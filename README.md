@@ -1,4 +1,4 @@
-# Implementing Continual Robustness Gym Evaluation on Pre-trained Models
+# Evaluating Robustness Against Sarcasm for BERT-Style Models
 Project for DS-UA 203 - LING-UA 52: Machine Learning for Language Understanding, taught by Prof. Samuel Bowman, Spring 2021.
 
 ## Motivation
