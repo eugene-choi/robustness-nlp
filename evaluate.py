@@ -54,4 +54,15 @@ def report(binary_labels, binary_predictions):
 	print(f'Recall =  {metrics.recall_score(binary_labels, binary_predictions)}')
 
 
-	
+
+def to_numeric_labels(non_num_lable):
+	labels = []
+	for label in non_num_lable:
+		if(label == 'notsarc'):
+			labels.append(0)
+		else:
+			labels.append(1)
+	return labels
+
+
+

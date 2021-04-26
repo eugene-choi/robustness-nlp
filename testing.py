@@ -24,7 +24,7 @@ binary_predictions, binary_labels, binary_prediction_scores, binary_original_ind
 evaluate.report(binary_labels, binary_predictions)
 
 
-print('(2) RoBERTa expriment using:')
+print('\n\n(2) RoBERTa expriment using:')
 print('roberta-large-mnli')
 # RoBERTa
 rob_large = 'roberta-large-mnli'
@@ -37,7 +37,20 @@ evaluate.report(binary_labels, binary_predictions)
 
 
 
-print('(3) DeBERTa expriment using:')
+print('\n\n(3) DeBERTa expriment using:')
+print('microsoft/deberta-base-mnli')
+# DeBERTa
+#deberta_name = 'microsoft/deberta-xlarge-mnli'
+deberta_name = 'microsoft/deberta-base-mnli'
+tokenizer_deb = AutoTokenizer.from_pretrained(deberta_name)
+model_deb = AutoModelForSequenceClassification.from_pretrained(deberta_name)
+pipe_deb = pipeline('sentiment-analysis', model=model_deb, tokenizer = tokenizer_deb, framework = 'pt', device = 0)
+predictions, prediction_scores = evaluate.evaluate(passage, pipe_deb)
+binary_predictions, binary_labels, binary_prediction_scores, binary_original_index = evaluate.report_binary_metrics(predictions, prediction_scores, label)
+evaluate.report(binary_labels, binary_predictions)
+
+
+print('\n\n(4) DeBERTa expriment using:')
 print('microsoft/deberta-large-mnli')
 # DeBERTa
 #deberta_name = 'microsoft/deberta-xlarge-mnli'
@@ -49,7 +62,44 @@ predictions, prediction_scores = evaluate.evaluate(passage, pipe_deb)
 binary_predictions, binary_labels, binary_prediction_scores, binary_original_index = evaluate.report_binary_metrics(predictions, prediction_scores, label)
 evaluate.report(binary_labels, binary_predictions)
 
-sys.stdout.close()
+
+print('\n\n(5) DeBERTa expriment using:')
+print('microsoft/deberta-xlarge-mnli')
+# DeBERTa
+deberta_name = 'microsoft/deberta-xlarge-mnli'
+tokenizer_deb = AutoTokenizer.from_pretrained(deberta_name)
+model_deb = AutoModelForSequenceClassification.from_pretrained(deberta_name)
+pipe_deb = pipeline('sentiment-analysis', model=model_deb, tokenizer = tokenizer_deb, framework = 'pt', device = 0)
+predictions, prediction_scores = evaluate.evaluate(passage, pipe_deb)
+binary_predictions, binary_labels, binary_prediction_scores, binary_original_index = evaluate.report_binary_metrics(predictions, prediction_scores, label)
+evaluate.report(binary_labels, binary_predictions)
+
+"""
+print('\n\n(6) DeBERTa expriment using:')
+print('microsoft/deberta-v2-xlarge-mnli')
+# DeBERTa
+deberta_name = 'microsoft/deberta-xlarge-mnli'
+tokenizer_deb = AutoTokenizer.from_pretrained(deberta_name)
+deberta_name = 'microsoft/deberta-v2-xlarge-mnli'
+model_deb = AutoModelForSequenceClassification.from_pretrained(deberta_name)
+pipe_deb = pipeline('sentiment-analysis', model=model_deb, tokenizer = tokenizer_deb, framework = 'pt', device = 0)
+predictions, prediction_scores = evaluate.evaluate(passage, pipe_deb)
+binary_predictions, binary_labels, binary_prediction_scores, binary_original_index = evaluate.report_binary_metrics(predictions, prediction_scores, label)
+evaluate.report(binary_labels, binary_predictions)
+
+
+print('\n\n(7) DeBERTa expriment using:')
+print('microsoft/deberta-v2-xxlarge-mnli')
+# DeBERTa
+deberta_name = 'microsoft/deberta-v2-xxlarge-mnli'
+tokenizer_deb = AutoTokenizer.from_pretrained(deberta_name)
+model_deb = AutoModelForSequenceClassification.from_pretrained(deberta_name)
+pipe_deb = pipeline('sentiment-analysis', model=model_deb, tokenizer = tokenizer_deb, framework = 'pt', device = 0)
+predictions, prediction_scores = evaluate.evaluate(passage, pipe_deb)
+binary_predictions, binary_labels, binary_prediction_scores, binary_original_index = evaluate.report_binary_metrics(predictions, prediction_scores, label)
+evaluate.report(binary_labels, binary_predictions)
+"""
+
 
 
 
